@@ -1,0 +1,27 @@
+# region in AWS
+region = "eu-west-1"
+
+key_name = ""                      # the name of an existing SSH keypair in AWS, used to login into the servers and clients
+ami      = "ami-0f98d0975afb795c7" # ubuntu 20.04 LTS on eu-west-1, the default
+
+
+# allowlist_ip            = "xx.xx.xx.xx/32" # an optional IP to be whitelisted in the security group. The one running terraform is added automatically
+name                 = "nomad-demo-"
+nomad_dc             = "dc1"
+server_count         = "3"
+client_instance_type = "t3.micro"
+client_count         = "3"
+nomad_gossip_key     = "" # follow instructions here to generate one: https://developer.hashicorp.com/nomad/tutorials/transport-security/security-gossip-encryption
+
+nomad_acl_enabled             = "false" # enable the ACL system
+nomad_tls_enabled             = "false" # enable TLS encryption
+nomad_tls_verify_https_client = "false" # https://developer.hashicorp.com/nomad/docs/configuration/tls#verify_https_client
+
+# for nomad Enterprise
+nomad_ent     = "true"
+nomad_version = "1.6.1+ent-1"
+nomad_license = "123" # the nomad enterprise license
+
+## for nomad OSS
+# nomad_ent = "false"
+# nomad_version = "1.6.1-1"
