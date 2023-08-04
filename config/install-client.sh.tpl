@@ -41,19 +41,6 @@ else
     sudo apt install -y nomad-enterprise=${NOMAD_VERSION}
 fi
 
-# install CA and key
-sudo cat << EOF > /etc/nomad.d/nomad-agent-ca.pem
-${NOMAD_CA_PEM}
-EOF
-
-# install client cert and key
-sudo cat << EOF > /etc/nomad.d/global-client-nomad.pem
-${NOMAD_CLIENT_PEM}
-EOF
-
-sudo cat << EOF > /etc/nomad.d/global-client-nomad-key.pem
-${NOMAD_CLIENT_KEY}
-EOF
 
 
 sudo cat << EOF > /etc/nomad.d/nomad.hcl
@@ -82,6 +69,21 @@ EOF
 
 if ${NOMAD_TLS_ENABLED}
 then
+
+# install CA and key
+sudo cat << EOF > /etc/nomad.d/nomad-agent-ca.pem
+${NOMAD_CA_PEM}
+EOF
+
+# install client cert and key
+sudo cat << EOF > /etc/nomad.d/global-client-nomad.pem
+${NOMAD_CLIENT_PEM}
+EOF
+
+sudo cat << EOF > /etc/nomad.d/global-client-nomad-key.pem
+${NOMAD_CLIENT_KEY}
+EOF
+
 sudo cat << EOF > /etc/nomad.d/nomad.hcl
 # Require TLS
 tls {

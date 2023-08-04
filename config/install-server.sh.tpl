@@ -47,22 +47,6 @@ sudo cat << EOLIC > /etc/nomad.d/license.hclic
 ${NOMAD_LICENSE}
 EOLIC
 
-# install CA and key
-sudo cat << EOF > /etc/nomad.d/nomad-agent-ca.pem
-${NOMAD_CA_PEM}
-EOF
-
-# install server cert and key
-sudo cat << EOF > /etc/nomad.d/global-server-nomad.pem
-${NOMAD_SERVER_PEM}
-EOF
-
-sudo cat << EOF > /etc/nomad.d/global-server-nomad-key.pem
-${NOMAD_SERVER_KEY}
-EOF
-
-# chown nomad:nomad /etc/nomad.d/*.pem
-
 sudo cat << EOF > /etc/nomad.d/nomad.hcl
 data_dir  = "/opt/nomad/data"
 bind_addr = "0.0.0.0"
@@ -88,6 +72,22 @@ EOF
 
 if ${NOMAD_TLS_ENABLED}
 then
+
+# install CA and key
+sudo cat << EOF > /etc/nomad.d/nomad-agent-ca.pem
+${NOMAD_CA_PEM}
+EOF
+
+# install server cert and key
+sudo cat << EOF > /etc/nomad.d/global-server-nomad.pem
+${NOMAD_SERVER_PEM}
+EOF
+
+sudo cat << EOF > /etc/nomad.d/global-server-nomad-key.pem
+${NOMAD_SERVER_KEY}
+EOF
+
+
 sudo cat << EOF >> /etc/nomad.d/nomad.hcl
 
 # Require TLS
