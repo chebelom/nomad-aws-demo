@@ -3,8 +3,6 @@
 set -e
 set -o pipefail
 
-# sudo -u ubuntu -i <<'EOAA'
-
 # Docker
 echo "install docker"
 sudo apt-get update
@@ -106,7 +104,10 @@ EOF
 
 
 export NOMAD_ADDR=https://localhost:4646
-echo "export NOMAD_ADDR=https://localhost:4646" >> ~/.bashrc
+echo "export NOMAD_ADDR=https://localhost:4646" >> /home/ubuntu/.bashrc
+
+export NOMAD_CACERT=/etc/nomad.d/nomad-agent-ca.pem
+echo "export NOMAD_CACERT=/etc/nomad.d/nomad-agent-ca.pem" >> /home/ubuntu/.bashrc
 
 fi
 

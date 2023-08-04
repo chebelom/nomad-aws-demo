@@ -84,7 +84,7 @@ sudo cat << EOF > /etc/nomad.d/global-client-nomad-key.pem
 ${NOMAD_CLIENT_KEY}
 EOF
 
-sudo cat << EOF > /etc/nomad.d/nomad.hcl
+sudo cat << EOF >> /etc/nomad.d/nomad.hcl
 # Require TLS
 tls {
   http = true
@@ -100,7 +100,7 @@ tls {
 EOF
 
 export NOMAD_ADDR=https://localhost:4646
-echo "export NOMAD_ADDR=https://localhost:4646" >> ~/.bashrc
+echo "export NOMAD_ADDR=https://localhost:4646" >> /home/ubuntu/.bashrc
 fi
 
 systemctl daemon-reload
